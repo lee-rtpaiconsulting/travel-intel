@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Travel Intel</title>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow-x:clip}
+  body{
+    background:radial-gradient(ellipse at 20% -10%,#16203a 0%,#0d1424 46%,#080b13 100%);
+    background-attachment:fixed;min-height:100vh;color:#f2efe6;
+    font:15px/1.6 'Jost',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+    padding:calc(34px + env(safe-area-inset-top,0px)) 20px calc(40px + env(safe-area-inset-bottom,0px));
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:640px;margin:0 auto}
+  .eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#d4b87a}
+  h1{font-family:'Italiana',Georgia,serif;font-weight:400;font-size:38px;line-height:1.05;margin:6px 0 8px}
+  .lede{color:#9aa4b8;font-size:14.5px;max-width:44ch}
+  h2{font-family:'Italiana',Georgia,serif;font-weight:400;font-size:23px;margin:34px 0 3px}
+  .sub{color:#8f9ab0;font-size:12.5px;margin-bottom:12px}
+  .row{display:grid;gap:11px;grid-template-columns:1fr}
+  @media(min-width:560px){.row{grid-template-columns:1fr 1fr}}
+  a.card{
+    display:flex;flex-direction:column;gap:3px;justify-content:center;
+    min-height:78px;padding:15px 17px;text-decoration:none;color:inherit;
+    border:1px solid rgba(212,184,122,.22);border-radius:14px;
+    background:rgba(22,30,48,.62);
+  }
+  a.card:hover,a.card:active{border-color:#d4b87a;background:rgba(22,30,48,.85)}
+  .t{font-size:16px;color:#e8d5a3}
+  .d{font-size:12.5px;color:#8f9ab0}
+  .pick{
+    display:inline-block;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+    color:#d4b87a;border:1px solid rgba(212,184,122,.45);border-radius:999px;
+    padding:3px 9px;margin-bottom:5px;align-self:flex-start;
+  }
+  .note{
+    margin-top:34px;padding:15px 17px;border-radius:13px;font-size:13px;line-height:1.6;
+    border:1px solid rgba(212,184,122,.20);background:rgba(22,30,48,.5);color:#9aa4b8;
+  }
+  .note b{color:#e8d5a3;font-weight:500}
+  footer{margin-top:26px;color:#6f7a90;font-size:11.5px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Field guides</div>
+  <h1>Travel Intel</h1>
+  <p class="lede">Two researched dashboards. Open the phone edition on a phone and the full
+     edition on a laptop &mdash; they hold the same venues, laid out for the screen you are on.</p>
+
+  <h2>Naxos</h2>
+  <div class="sub">132 venues &middot; dining, beach clubs, lounges, boats, ateliers</div>
+  <div class="row">
+    <a class="card" href="naxos-mobile.html"><span class="pick">On a phone</span>
+      <span class="t">Naxos &mdash; phone</span><span class="d">Tabs, distances, tap to call</span></a>
+    <a class="card" href="naxos.html">
+      <span class="t">Naxos &mdash; full</span><span class="d">Map, charts, favourites</span></a>
+  </div>
+
+  <h2>Athens</h2>
+  <div class="sub">71 venues &middot; dining, rooftops, shops, ateliers</div>
+  <div class="row">
+    <a class="card" href="athens-mobile.html"><span class="pick">On a phone</span>
+      <span class="t">Athens &mdash; phone</span><span class="d">Walking times from Syntagma</span></a>
+    <a class="card" href="athens.html">
+      <span class="t">Athens &mdash; full</span><span class="d">Map, charts, favourites</span></a>
+  </div>
+
+  <div class="note">
+    <b>Why this page exists.</b> Saved to a phone and opened from Files, these dashboards get
+    handed to Quick Look, which runs no JavaScript and blocks remote images &mdash; so the
+    photos came up as torn icons. Served over https, as here, everything works: photos load,
+    search and sort come alive, and the maps open in your phone&rsquo;s own Maps app.
+  </div>
+
+  <footer>Unlisted and marked no-index. Anyone with the link can open it; search engines will not list it.</footer>
+</div>
+</body>
+</html>
