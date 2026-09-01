@@ -1444,7 +1444,12 @@ DATA.forEach(function (v, i) { v._i = i; v._photos = allPhotos(v); });
    The roster is a snapshot, so the file states when it was verified, when the next
    refresh is due, and warns on its own once it passes the safe window.
    ============================================================ */
-function dayDiff(a, b) { return Math.round((b - a) / 86400000); }
+/* Calendar-day arithmetic. Both ends are floored to UTC midnight first, so data
+   verified this morning reads as "today" all day instead of flipping to
+   "1 day old" once the wall clock passes noon. */
+function utcDay(d) { return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); }
+function dayDiff(a, b) { return Math.round((utcDay(new Date(b)) - utcDay(new Date(a))) / 86400000); }
+function ageStr(n) { return n === 0 ? 'today' : n + ' day' + (n === 1 ? '' : 's') + ' ago'; }
 function fmtDate(s) {
   var p = String(s).split('-');
   var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
@@ -1452,7 +1457,7 @@ function fmtDate(s) {
 }
 function freshness() {
   var built = new Date(META.built + 'T00:00:00Z');
-  var now = new Date();
+  var now = new Date(utcDay(new Date()));   // today at UTC midnight
   var age = dayDiff(built, now);
   var next = null;
   for (var i = 0; i < META.schedule.length; i++) {
@@ -1479,7 +1484,7 @@ function renderFreshness() {
   host.innerHTML =
     '<div class="eyebrow !text-[9px] dim mb-1">Data</div>' +
     '<div style="font-size:11.5px;line-height:1.5;color:' + tone + '">' +
-      'Verified ' + fmtDate(f.built) + ' \u00b7 ' + f.age + ' day' + (f.age === 1 ? '' : 's') + ' old<br>' + line +
+      'Verified ' + fmtDate(f.built) + ' \u00b7 ' + ageStr(f.age) + '<br>' + line +
       (f.stale ? '<br><b style="font-weight:500">Past the ' + META.interval + '-day safe window \u2014 re-verify before booking</b>' : '') +
     '</div>';
   var warn = document.getElementById('staleBanner');
@@ -2271,7 +2276,7 @@ function drawCharts() {
   }
   var upcoming = META.schedule.filter(function (d) { return new Date(d + 'T00:00:00Z') >= new Date(); });
   host.innerHTML =
-    tile('Verified', fmtDate(META.built), f.age + ' day' + (f.age === 1 ? '' : 's') + ' ago') +
+    tile('Verified', fmtDate(META.built), ageStr(f.age)) +
     tile('Safe window', META.interval + ' days', 'refresh every ' + META.every + ' days to stay inside it',
          f.stale ? '#d99b8f' : null) +
     tile('Suggested refresh', f.next ? fmtDate(f.next) : '\u2014',
